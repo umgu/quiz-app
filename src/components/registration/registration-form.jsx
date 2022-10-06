@@ -1,69 +1,51 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import "./registration.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { saveUserDetails } from '../../redux/actions';
 
 export default function RegistrationForm() {
-  console.log("")
+  console.log("---Registration---");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [gender, setGender] = React.useState("");
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    let firstName = data.get('fn');
-    let lastName = data.get('ln');
-    if(firstName && lastName) {
+    if (firstName && lastName && gender) {
+      dispatch(saveUserDetails({firstName, lastName, gender}));
       navigate("/quiz/start");
     }
-    else{
-      alert("Enter your first and last name")
+    else {
+      alert("Enter valid detail!!!");
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          Registration
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="fn"
-            label="First name"
-            name="fn"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="ln"
-            label="Last name"
-            type="text"
-            id="ln"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Start quiz
-          </Button>
-        </Box>
-      </Box>
-    </Container>
+    <div className="form-container">
+      <div className="form d-flex flex-column">
+        <h3>Register</h3>
+
+        <input value={firstName} onChange={(e)=>setFirstName(e.target.value)} type="text" className="form-control mb-2" placeholder="First name" />
+
+        <input value={lastName} onChange={(e)=>setLastName(e.target.value)} type="text" className="form-control mb-2" placeholder="Last name" />
+
+        <div className="radio-btns">
+          <div className="me-2">
+            <input onChange={(e)=>setGender(e.target.value)} className="form-check-input me-1" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="male" />
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
+              Male
+            </label>
+          </div>
+          <div className="me-2">
+            <input onChange={(e)=>setGender(e.target.value)} className="form-check-input me-1" type="radio" name="flexRadioDefault" value="female" id="flexRadioDefault2" />
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
+              Female
+            </label>
+          </div>
+        </div>
+        <button type="submit" className="btn btn-dark btn-block mt-1" onClick={handleSubmit}>Start Quiz</button>
+      </div>
+    </div>
   );
 }

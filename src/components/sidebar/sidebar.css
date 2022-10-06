@@ -102,11 +102,11 @@
         position: fixed;
     } */
 
+
     .link_container{
         height: 100%;
         width: 100vw;
-        display: flex;
-        justify-content: center;
+        display: block;
         gap: 10px;
     }
     .logo_container{

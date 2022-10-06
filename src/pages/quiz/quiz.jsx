@@ -2,10 +2,15 @@ import React, { useEffect, useRef } from 'react'
 import Question from '../../components/question/question'
 import "./quiz.css"
 import { useDispatch, useSelector } from "react-redux";
-import { loadQuestion } from '../../redux/actions';
+import { loadData } from '../../redux/actions';
 
 const data = {
-  "data": [
+  "detail": {
+    firstName: "",
+    lastName: "",
+    geder: ""
+  },
+  "questions": [
     {
       "id": 1,
       "question": "Who composed Vande Matram ?",
@@ -48,7 +53,7 @@ const Quiz = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadQuestion(data.data));
+    dispatch(loadData(data));
   }, [])
 
   return (
@@ -60,9 +65,12 @@ const Quiz = () => {
           <small>Time taken: 45min</small>
         </div>
       </div>
-      
       <div className="question-container">
-        <Question question={state.questionList[state.current_question_number - 1]} state={state} />
+        <Question
+          question={state.questionList[state.current_question_number - 1]}
+          state={state} key={state.questionList[state.current_question_number - 1].id}
+          startTime={Date.now()}
+        />
       </div>
     </div>
   )
