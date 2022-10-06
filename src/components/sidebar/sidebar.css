@@ -1,0 +1,140 @@
+/* .sidebar-container {
+    position: sticky;
+    top: 0;
+} */
+
+.link_container{
+    z-index: 1000;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #43425D 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.navbar{
+    z-index: 100;
+    position: fixed;
+}
+
+.logo_container{
+    width: 100%;
+    height: auto;
+    /* background: #00000036 0% 0% no-repeat padding-box; */
+    box-shadow: 0px 2px 3px #0000000D;
+    opacity: 1;
+}
+.logo_container>img{
+    width: 100%;
+    width: 100%;
+    resize: cover;
+}
+
+.List_container ul li a{
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin: 0 0px;
+    transition: 0.25s ease;
+    color: #ffffff;
+}
+.List_container ul{
+    padding: 0;
+    margin: 0 ;
+    transition: 0.25s ease;
+}
+.List_container ul li{
+    list-style: none;
+    padding: 0;
+    margin: 0 ;
+    border-bottom: 1px solid #00000036;
+    transition: 0.25s ease;
+}
+.List_container ul li a i{
+ margin:0 10px;
+ transition: 0.25s ease;
+}
+
+.List_container ul li a.inactive{
+    border-left: 5px solid #43425D;
+}
+.List_container ul li a:hover{
+    display: block;
+    padding:10px;
+    /* margin: 0 1px; */
+    transition: 0.25s ease;
+    border-left: 5px solid #00000036 ;
+    background-color: #00000036;
+
+}
+.List_container ul li a.active{
+    transition: 0.50s ease;
+    border: 1px solid #F58220 ;
+
+    border-left: 5px solid #F58220;
+}
+.List_container ul li a i.active{
+    color: #F58220;
+}
+.List_container ul li a i{
+    color: #A5A4BF;
+}
+.icon_color{
+    transition: 0.25s ease;
+    color: #F58220;
+}
+.icon_color.active{
+    color: #1a193d;
+}
+
+@media ( min-width : 992px){
+    .hamburger_menu_icon{
+        display: none;
+    }
+
+    /* .sidebar-container {
+        height: 100vh;
+    } */
+
+}
+@media ( max-width : 992px){
+    /* .sidebar-container {
+        position: fixed;
+    } */
+
+    .link_container{
+        height: 100%;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .logo_container{
+        width: 10rem;
+        height: 100%;
+        /* background: #00000036 0% 0% no-repeat padding-box; */
+        box-shadow: 0px 2px 3px #0000000D;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+
+    }
+    .hide_mobile_view{
+        display: none;
+         transition: 0.25s ease;
+    }
+    .link-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .show_mobile_view{
+        display:block;
+        transition: 0.25s ease;
+        z-index: 100;
+        position:fixed;
+        background: #43425D 0% 0% no-repeat padding-box;
+        width: 100vw;
+
+    }
+}

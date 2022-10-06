@@ -1,0 +1,19 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    box-sizing: border-box;
+}
+
+
+@media ( max-width : 992px){
+   .main-container {
+    grid-template-rows: 1fr 8fr;
+    grid-template-columns: 1fr;
+   }
+}
