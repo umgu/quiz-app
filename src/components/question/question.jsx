@@ -47,7 +47,7 @@ function Question({ question, state, startTime }) {
                 <div className="row">
                     <div className="col">
                         <div className="timer-wrapper mb-2">
-                            <Counter onTimeout={onTimeout} key={question.id} />
+                            <Counter onTimeout={onTimeout} key={question.id}  time={TIME_PER_QUESTION}/>
                         </div>
                         <span style={{ textAlign: "left", letterSpacing: "1.12px", color: "#858494" }}>QUESTION {state.current_question_number} of {state.total_question_number}</span>
                         <div className="question-wrapper mt-3">

@@ -1,15 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import Question from '../../components/question/question'
 import "./quiz.css"
 import { useDispatch, useSelector } from "react-redux";
 import { loadData } from '../../redux/actions';
 
 const data = {
-  "detail": {
-    firstName: "",
-    lastName: "",
-    geder: ""
-  },
   "questions": [
     {
       "id": 1,

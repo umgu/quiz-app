@@ -1,0 +1,14 @@
+.question-form-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.text-area{
+    height: 50px;
+    width: 250px;
+}
+
+.options-container{
+    margin: 0px 1rem;
+}

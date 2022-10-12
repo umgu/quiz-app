@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./counter.css";
-import { TIME_PER_QUESTION } from '../../constants/constant';
 
-function Counter({ onTimeout }) {
+function Counter({ onTimeout, time }) {
     console.log("---Counter---")
-    const [count, setCount] = useState(TIME_PER_QUESTION);
+    const [count, setCount] = useState(time);
 
     const progressStyle = {
-        background: `conic-gradient(#d9d9d9 ${(TIME_PER_QUESTION - count) * 36
-            }deg, #ff8fa2 ${(TIME_PER_QUESTION - count) * 36}deg)`
+        background: `conic-gradient(#d9d9d9 ${(time - count) * 36
+            }deg, #ff8fa2 ${(time - count) * 36}deg)`
     }
    
     useEffect(() => {
