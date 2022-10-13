@@ -16,7 +16,7 @@ function App() {
   const state = useSelector((state) => state.quiz);
   return (
     <div className="main-container">
-      {/* <Admin /> */}
+      <Admin />
       <Sidebar />
       <Routes>
         <Route exact path="/" element={<Home />} />

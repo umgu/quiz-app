@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function OptionList({ options, addOption, removeOption, setCorrectAnswer }) {
   console.log("---OptionList---");
@@ -21,7 +21,7 @@ function OptionList({ options, addOption, removeOption, setCorrectAnswer }) {
   return (
     <div className="options-container">
       <input type="text" value={option} onChange={(e)=>setOption(e.target.value)}/>
-      <button onClick={(e) => {
+      <button type='button' onClick={(e) => {
         let flag = true;
         options.forEach(element => {
           if(element === option){
@@ -35,7 +35,7 @@ function OptionList({ options, addOption, removeOption, setCorrectAnswer }) {
   
       }}>+</button>
       <div className="options-list">
-        {options.map((op, index)=><div><button onClick={()=>{handleDeleteOption(index, op)}}>-</button> {op} <input className="me-0" name="option-radio" type="radio" onClick={(e)=>{setAnswer(op)}}/></div>)}
+        {options.map((op, index)=><div key={index}><button onClick={()=>{handleDeleteOption(index, op)}}>-</button> {op} <input className="me-0" name="option-radio" type="radio" onClick={(e)=>{setAnswer(op)}}/></div>)}
       </div>
     </div>
   )
