@@ -20,10 +20,10 @@ export default function MyVerticallyCenteredModal(props) {
             </Modal.Body>
             <Modal.Footer>
                 <NavLink to="/">
-                    <Button onClick={props.onHide}>Home</Button>
+                    <Button>Home</Button>
                 </NavLink>
                 <NavLink to="/leaderboard">
-                    <Button onClick={props.onHide}>Leaderboard</Button>
+                    <Button>Leaderboard</Button>
                 </NavLink>
             </Modal.Footer>
         </Modal>

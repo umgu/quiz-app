@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import Counter from "../counter/counter";
 import "./question.css";
 import { saveAndNextQuestion, skipQuestion, saveAndSubmit } from '../../redux/actions';
-import MyVerticallyCenteredModal from "../modal/modal";
+import MyVerticallyCenteredModal from "../modal/success-modal";
 import { TIME_PER_QUESTION } from '../../constants/constant';
+import axios from 'axios';
 
 
 function Question({ question, state, startTime }) {
@@ -16,13 +17,21 @@ function Question({ question, state, startTime }) {
     const dispatch = useDispatch();
 
     const onClickNextBtn = (ev) => {
-        dispatch(saveAndNextQuestion({question, ans: answer, timeTaken: isTimeup?TIME_PER_QUESTION:Date.now() - startTime}));
+        dispatch(saveAndNextQuestion({question, ans: answer, timeTaken: Date.now() - startTime}));
     }
 
     const onClickSubmit = () => {
-        dispatch(saveAndSubmit({question, ans: answer, timeTaken: isTimeup?TIME_PER_QUESTION:Date.now() - startTime}));
-        setShowModal(true);
-        console.log({detail: state.detail, questions: state.questionList})
+        dispatch(saveAndSubmit({question, ans: answer, timeTaken: Date.now() - startTime}));
+        const result = {detail: state.detail, questions: state.questionList.map((q) => {delete q.img; return q})};
+        axios
+        .post('http://192.168.81.113:5000/submit-result', result)
+        .then((response) => {
+            if(response.status === 200) {
+                setShowModal(true);
+            }else{
+                console.log("Some Error Occured");
+            }});
+        console.log(result)
     }
 
     const onClickSkipBtn = (ev) => {

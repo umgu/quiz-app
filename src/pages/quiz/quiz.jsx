@@ -3,6 +3,7 @@ import Question from '../../components/question/question'
 import "./quiz.css"
 import { useDispatch, useSelector } from "react-redux";
 import { loadData } from '../../redux/actions';
+import axios from 'axios';
 
 const data = {
   "questions": [
@@ -48,7 +49,10 @@ const Quiz = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadData(data));
+    axios.get("http://192.168.81.113:5000/load-questions")
+    .then((response) => {
+      dispatch(loadData(response.data))
+    });
   }, [])
 
   return (
