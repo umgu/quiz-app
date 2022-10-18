@@ -5,9 +5,11 @@ import axios from 'axios';
 
 function QuestionForm(props) {
   console.log("---QuestionForm---");
-  const [question, setQuestion] = useState();
-  const [options, setOptions] = useState([]);
-  const [answer, setAnswer] = useState('');
+  const [question, setQuestion] = useState(props.question?props.question.question:"");
+  const [options, setOptions] = useState(props.question?props.question.options:[]);
+  const [answer, setAnswer] = useState(props.question?props.question.answer:'');
+
+  console.log(props.question);
 
   const addOption = (option) => {
     setOptions([...options, option]);
@@ -36,7 +38,13 @@ function QuestionForm(props) {
     else if (!answer) {
       alert("Please select the correct answer");
     }
-    else {
+    else if(props.question){
+      const fd = new FormData(ev.target);
+      fd.set('options', JSON.stringify(options));
+      fd.set('answer', answer);
+      console.log(fd);
+    }
+    else{
       const fd = new FormData(ev.target);
       fd.set('options', JSON.stringify(options));
       fd.set('answer', answer);
@@ -65,7 +73,7 @@ function QuestionForm(props) {
           <tr>
             <th>Options: </th>
             <td>
-              <OptionList options={options} addOption={addOption} removeOption={removeOption} setCorrectAnswer={setCorrectAnswer} />
+              <OptionList options={options} addOption={addOption} removeOption={removeOption} setCorrectAnswer={setCorrectAnswer} ans={answer}/>
             </td>
           </tr>
           <tr>
@@ -80,7 +88,7 @@ function QuestionForm(props) {
             <th></th>
             <td>
               <button className="btn btn-secondary h-25 me-2" type="button" onClick={() => { props.onClose() }}>Cancle</button>
-              <button className="btn btn-primary h-25" type="submit">Add</button>
+              <button className="btn btn-primary h-25" type="submit">{props.question?"Update":"Add"}</button>
             </td>
           </tr>
         </tfoot>

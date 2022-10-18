@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import QuestionFormModal from '../modal/question-form';
 import "./question-list.css";
-let selectedQuestion;
-let type;
+
+let selectedQuestion = null;
 function QuestionList() {
     console.log("---QuestionList---")
     const [questions, setQuestions] = useState([]);
@@ -20,6 +20,7 @@ function QuestionList() {
 
     const onFormClose = () => {
         setShowQuestionForm(false);
+        selectedQuestion = null;
     }
 
     const handleDeleteAll = () => {
@@ -29,10 +30,13 @@ function QuestionList() {
     }
 
     const handleDelete = (id) => {
-        axios.delete('http://127.0.0.1:5000/delete-question', {id});
+        axios.delete(`http://127.0.0.1:5000/delete-question/${id}`);
     }
 
-    const handleEdit = () => {
+    const handleEdit = (index) => {
+        selectedQuestion = questions[index];
+        setShowQuestionForm(true);
+
     }
 
     return (
@@ -70,7 +74,7 @@ function QuestionList() {
                             </td>
                             <td>
                                 <div>
-                                    <button className="btn btn-secondary me-2 mb-2" onClick={() => handleEdit(q.id)}>Edit</button>
+                                    <button className="btn btn-secondary me-2 mb-2" onClick={() => handleEdit(i)}>Edit</button>
                                     <button className="btn btn-secondary me-2 mb-2" onClick={() => handleDelete(q.id)}>Delete</button>
                                 </div>
                             </td>
@@ -79,7 +83,7 @@ function QuestionList() {
                 </tbody>
                 <tfoot></tfoot>
             </table>
-            <QuestionFormModal show={showQuestionForm} onClose={onFormClose} onQuestionAdd={() => setRefreshToggleFlag(!refreshToggleFlag)} />
+            <QuestionFormModal show={showQuestionForm} onClose={onFormClose} onQuestionAdd={() => setRefreshToggleFlag(!refreshToggleFlag)} question={selectedQuestion}/>
         </div>
     )
 }

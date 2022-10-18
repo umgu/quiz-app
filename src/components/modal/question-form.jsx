@@ -15,7 +15,7 @@ export default function QuestionFormModal(props) {
                 <h3 className="text-center mt-2">Add Question</h3>
             </Modal.Title>
             <Modal.Body>
-                <QuestionForm onClose={props.onClose} onQuestionAdd={props.onQuestionAdd}/>
+                <QuestionForm onClose={props.onClose} onQuestionAdd={props.onQuestionAdd} question={props.question}/>
             </Modal.Body>
         </Modal>
     );

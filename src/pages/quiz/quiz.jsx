@@ -49,7 +49,7 @@ const Quiz = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("http://192.168.81.113:5000/load-questions")
+    axios.get("http://192.168.81.113:5000/user/load-questions")
     .then((response) => {
       dispatch(loadData(response.data))
     });

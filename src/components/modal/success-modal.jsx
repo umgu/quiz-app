@@ -11,21 +11,22 @@ export default function MyVerticallyCenteredModal(props) {
             centered
         >
             <Modal.Title id="contained-modal-title-vcenter">
-                Successfully submitted!!!
+                <h5 className="ms-4 mt-4">Successfully submitted!!!</h5>
             </Modal.Title>
             <Modal.Body>
-                <p>
+                <p className="ps-2">
                     You can check result in leaderboard
                 </p>
             </Modal.Body>
             <Modal.Footer>
                 <NavLink to="/">
-                    <Button>Home</Button>
+                    <Button className="btn btn-secondary">Home</Button>
                 </NavLink>
                 <NavLink to="/leaderboard">
                     <Button>Leaderboard</Button>
                 </NavLink>
             </Modal.Footer>
         </Modal>
+
     );
 }

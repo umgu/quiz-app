@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-function OptionList({ options, addOption, removeOption, setCorrectAnswer }) {
+function OptionList({ options, addOption, removeOption, setCorrectAnswer, ans }) {
   console.log("---OptionList---");
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState(ans?ans:"");
   const [option, setOption] = useState("");
 
   useEffect(()=>{
@@ -35,7 +35,14 @@ function OptionList({ options, addOption, removeOption, setCorrectAnswer }) {
   
       }}>+</button>
       <div className="options-list">
-        {options.map((op, index)=><div key={index}><button onClick={()=>{handleDeleteOption(index, op)}}>-</button> {op} <input className="me-0" name="option-radio" type="radio" onClick={(e)=>{setAnswer(op)}}/></div>)}
+        {options.map((op, index)=>
+          <div key={index}>
+            <button onClick={()=>{handleDeleteOption(index, op)}}>
+              -
+            </button> {op} 
+            <input className="me-0" name="option-radio" type="radio" onChange={(e)=>{setAnswer(op)}} checked={op === answer}/>
+          </div>
+        )}
       </div>
     </div>
   )

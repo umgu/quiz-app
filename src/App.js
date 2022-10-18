@@ -15,10 +15,10 @@ function App() {
   console.log("---App---")
   const state = useSelector((state) => state.quiz);
   return (
-    <div className="main-contair">
+    <div className="main-contaner">
       <Admin />
-      {/* <Sidebar />
-      <Routes>
+      <Sidebar />
+      {/* <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/quiz/registration" element={<RegistrationForm type="registration"/>} />
         <Route exact path="/quiz/start" element={state.detail?<Quiz />:<Navigate to="/quiz/registration"/>} /> */}
