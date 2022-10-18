@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="main-contaner">
       <Admin />
-      <Sidebar />
+      {/* <Sidebar /> */}
       {/* <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/quiz/registration" element={<RegistrationForm type="registration"/>} />
